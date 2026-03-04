@@ -1,5 +1,5 @@
 ---
-name: flight-search
+name: flight
 description: >
   AI 機票搜尋助手 — 透過 Trip.com 深度 URL + agent-browser 搜尋最平機票。
   當用戶提及以下任何內容時自動觸發：機票、航班、飛機、flights、
