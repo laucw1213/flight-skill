@@ -1,48 +1,80 @@
-# ✈️ Flight Search Skill
+# ✈️ Flight Skill for Claude Code
 
-透過 **Trip.com 深度 URL + agent-browser** 搜尋機票的 Claude Skill。
+透過 **Trip.com + agent-browser** 自動搜尋及訂購機票的 Claude Code Plugin。
 
-## 原理
+## 安裝
+
+### 方法一：Plugin Marketplace（推薦）
+
+在 Claude Code 輸入 `/plugin`，選擇 **Discover** → **Add Marketplace**，輸入：
 
 ```
-構建 Trip.com 深度 URL → agent-browser 打開 → snapshot 提取航班數據 → 用戶選擇 → 協助訂票
+laucw1213/flight-skill
 ```
 
-無需 API Key，直接利用已登入的 Trip.com session 搜尋。
+然後選 **Install for you (user scope)**，即可在任何 project 使用 `/flight`。
+
+### 方法二：手動安裝
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/laucw1213/flight-skill/master/commands/flight.md \
+  -o ~/.claude/skills/flight/SKILL.md --create-dirs
+```
 
 ## 前置條件
 
 ### 1. 安裝 agent-browser
 ```bash
 npm install -g @anthropic-ai/agent-browser
-# 或
-brew install agent-browser
 ```
 
 ### 2. 首次登入 Trip.com
 ```bash
-agent-browser --session-name trip open "https://hk.trip.com/?locale=zh_hk&curr=HKD"
+agent-browser --session-name trip --headed open "https://hk.trip.com/?locale=zh_hk&curr=HKD"
 ```
 在彈出的瀏覽器視窗手動登入，完成後 cookies 自動儲存。
 
-### 3. 確認登入成功
+### 3. 設定自動授權（可選）
+避免每次執行都要按確認：
 ```bash
-agent-browser --session-name trip snapshot | grep -E "會員|我的訂單"
+node -e "
+const fs = require('fs');
+const path = require('os').homedir() + '/.claude/settings.json';
+let cfg = {};
+try { cfg = JSON.parse(fs.readFileSync(path, 'utf8')); } catch(e) {}
+if (!cfg.allowedTools) cfg.allowedTools = [];
+if (!cfg.allowedTools.includes('Bash(agent-browser*)')) {
+  cfg.allowedTools.push('Bash(agent-browser*)');
+  fs.writeFileSync(path, JSON.stringify(cfg, null, 2));
+  console.log('done');
+} else { console.log('already set'); }
+"
 ```
 
 ## 使用方式
 
 ```
-用戶：「幫我搵由香港去倫敦 3月9日 單程機票」
-Claude：自動觸發 skill → 搜尋 Trip.com → 顯示結果 → 協助訂票
+/flight
 ```
+
+然後按提示輸入：
+- 出發地 / 目的地
+- 日期、艙位、人數
+- 時間偏好（早上 / 下午 / 晚上）
+- 聯絡電郵及電話
+
+Claude 會自動開啟瀏覽器搜尋 Trip.com，顯示最多 3 個最便宜航班供選擇，並協助完成訂票直至付款頁面。
 
 ## 檔案結構
 
 ```
 flight-skill/
-├── SKILL.md    ← 主要 Skill 定義（Claude 執行指引）
-└── README.md   ← 本檔案（安裝說明）
+├── .claude-plugin/
+│   ├── plugin.json       ← Plugin 元數據
+│   └── marketplace.json  ← Marketplace 設定
+├── commands/
+│   └── flight.md         ← /flight 指令定義
+└── README.md
 ```
 
 ## Session 持久性
