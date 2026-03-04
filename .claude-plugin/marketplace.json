@@ -1,0 +1,23 @@
+{
+  "name": "laucw1213-skills",
+  "owner": {
+    "name": "laucw1213"
+  },
+  "metadata": {
+    "description": "Flight booking skill for Claude Code — books Cathay Pacific flights via Trip.com"
+  },
+  "plugins": [
+    {
+      "name": "flight",
+      "source": ".",
+      "description": "Book Cathay Pacific flights via Trip.com with automated browser",
+      "version": "1.0.0",
+      "author": {
+        "name": "laucw1213"
+      },
+      "homepage": "https://github.com/laucw1213/flight-skill",
+      "keywords": ["flight", "booking", "trip.com", "cathay pacific"],
+      "category": "productivity"
+    }
+  ]
+}
