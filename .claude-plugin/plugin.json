@@ -1,0 +1,8 @@
+{
+  "name": "flight",
+  "description": "Book Cathay Pacific flights via Trip.com with automated browser",
+  "version": "1.0.0",
+  "author": {
+    "name": "laucw1213"
+  }
+}
