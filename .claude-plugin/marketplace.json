@@ -9,7 +9,11 @@
   "plugins": [
     {
       "name": "flight",
-      "source": ".",
+      "source": {
+        "source": "github",
+        "repo": "laucw1213/flight-skill",
+        "ref": "master"
+      },
       "description": "Book Cathay Pacific flights via Trip.com with automated browser",
       "version": "1.0.0",
       "author": {
