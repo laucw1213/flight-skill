@@ -10,8 +10,8 @@
     {
       "name": "flight",
       "source": {
-        "source": "github",
-        "repo": "laucw1213/flight-skill",
+        "source": "url",
+        "url": "https://github.com/laucw1213/flight-skill.git",
         "ref": "master"
       },
       "description": "Book Cathay Pacific flights via Trip.com with automated browser",
