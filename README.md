@@ -34,7 +34,19 @@ agent-browser --session-name trip --headed open "https://hk.trip.com/?locale=zh_
 ```
 在彈出的瀏覽器視窗手動登入，完成後 cookies 自動儲存。
 
-### 3. 設定自動授權（可選）
+### 3. 設定預設 Headed 模式 + Chrome（可選）
+
+讓 agent-browser 預設使用有界面模式並使用 Chrome：
+```bash
+mkdir -p ~/.agent-browser && cat > ~/.agent-browser/config.json << 'EOF'
+{
+  "headed": true,
+  "executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+}
+EOF
+```
+
+### 4. 設定自動授權（可選）
 避免每次執行都要按確認：
 ```bash
 node -e "
