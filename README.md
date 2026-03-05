@@ -28,7 +28,7 @@ curl -fsSL https://raw.githubusercontent.com/laucw1213/flight-skill/master/comma
 brew install agent-browser
 ```
 
-### 2. 設定預設 Headed 模式 + Chrome（可選）
+### 2. 設定預設 Headed 模式 + Chrome
 
 讓 agent-browser 預設使用有界面模式並使用 Chrome：
 ```bash
