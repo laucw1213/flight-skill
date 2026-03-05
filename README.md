@@ -28,13 +28,7 @@ curl -fsSL https://raw.githubusercontent.com/laucw1213/flight-skill/master/comma
 brew install agent-browser
 ```
 
-### 2. 首次登入 Trip.com
-```bash
-agent-browser --session-name trip --headed open "https://hk.trip.com/?locale=zh_hk&curr=HKD"
-```
-在彈出的瀏覽器視窗手動登入，完成後 cookies 自動儲存。
-
-### 3. 設定預設 Headed 模式 + Chrome（可選）
+### 2. 設定預設 Headed 模式 + Chrome（可選）
 
 讓 agent-browser 預設使用有界面模式並使用 Chrome：
 ```bash
@@ -45,6 +39,12 @@ mkdir -p ~/.agent-browser && cat > ~/.agent-browser/config.json << 'EOF'
 }
 EOF
 ```
+
+### 3. 首次登入 Trip.com
+```bash
+agent-browser --session-name trip open "https://hk.trip.com/?locale=zh_hk&curr=HKD"
+```
+在彈出的瀏覽器視窗手動登入，完成後 cookies 自動儲存。
 
 ### 4. 設定自動授權（可選）
 避免每次執行都要按確認：
