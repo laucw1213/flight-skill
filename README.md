@@ -25,7 +25,7 @@ curl -fsSL https://raw.githubusercontent.com/laucw1213/flight-skill/master/comma
 
 ### 1. 安裝 agent-browser
 ```bash
-npm install -g @anthropic-ai/agent-browser
+brew install agent-browser
 ```
 
 ### 2. 首次登入 Trip.com
